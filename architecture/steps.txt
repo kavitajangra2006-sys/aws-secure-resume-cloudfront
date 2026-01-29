@@ -1,0 +1,36 @@
+IMPLEMENTATION STEPS WITH REASONS
+
+1. Created a private S3 bucket
+   - Uploaded resume PDF
+   - Enabled Block Public Access (4/4 ON)
+   Reason:
+   Prevents accidental data exposure and enforces private storage.
+
+2. Configured CloudFront distribution
+   - Selected S3 bucket as origin
+   - Enabled Origin Access Control (OAC)
+   Reason:
+   Ensures S3 content is accessible only through CloudFront.
+
+3. Applied S3 bucket policy
+   - Used AWS-generated policy to allow CloudFront access
+   Reason:
+   Allows secure service-to-service access without making the bucket public.
+
+4. Enabled security settings
+   - HTTP to HTTPS redirection
+   - AWS WAF enabled in monitor mode
+   Reason:
+   Encrypts data in transit and monitors potential web attacks.
+
+5. Testing and troubleshooting
+   - Verified direct S3 access returned AccessDenied
+   - Verified CloudFront HTTPS access worked correctly
+   - Fixed issues related to object naming and cache invalidation
+   Reason:
+   Ensures the solution works as expected and follows security principles.
+
+6. Cleanup
+   - Deleted AWS resources after testing
+   Reason:
+   Avoids unnecessary AWS costs and respects free-tier limits.
