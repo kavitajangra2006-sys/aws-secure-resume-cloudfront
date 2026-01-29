@@ -1,1 +1,29 @@
+ARCHITECTURE OVERVIEW – Secure Resume Hosting
+
+1. Amazon S3 (Storage Layer)
+   - Used to store resume PDF securely
+   - Public access blocked to prevent unauthorized access
+   Reason:
+   S3 public buckets are a common security risk. Keeping the bucket private
+   ensures better control and follows security best practices.
+
+2. Amazon CloudFront (Delivery Layer)
+   - Used to deliver content securely and efficiently
+   Reason:
+   CloudFront provides HTTPS, global access, and acts as a secure gateway
+   instead of exposing S3 directly.
+
+3. Origin Access Control (OAC)
+   - Allows only CloudFront to access the S3 bucket
+   Reason:
+   Prevents users from bypassing CloudFront and accessing S3 objects directly.
+
+4. Security Controls
+   - HTTPS enforced for encrypted communication
+   - AWS WAF enabled in monitor mode
+   Reason:
+   Protects against common web vulnerabilities and allows traffic monitoring.
+
+5. Access Flow
+   User → CloudFront (HTTPS) → S3 (Private Bucket)
 
